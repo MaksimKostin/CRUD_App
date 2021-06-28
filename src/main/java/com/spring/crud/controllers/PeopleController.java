@@ -32,29 +32,34 @@ public class PeopleController {
         return "people/show";
     }
 
+    // Переход на страницу создания нового человека
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("emptyPerson") Person person){
         return "people/new";
     }
 
+    // Метод для сохранения нового человека с пришедшими характеристиками из формы
     @PostMapping()
     public String create(@ModelAttribute("filledPerson") Person person){
         personDAO.save(person);
         return "redirect:/people";
     }
 
+    // Метод для отображения страницы редактирования человека
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id){
         model.addAttribute("editablePerson", personDAO.show(id));
         return "people/edit";
     }
 
+    // Метод добавляющий изменения существуещего человека
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("updatedPerson") Person person, @PathVariable("id") int id){
         personDAO.update(id, person);
         return "redirect:/people";
     }
 
+    // Метод удаляющий человека из нашей БД
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id){
         personDAO.delete(id);
