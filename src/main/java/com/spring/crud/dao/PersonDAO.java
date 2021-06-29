@@ -35,9 +35,8 @@ public class PersonDAO {
         List<Person> people = new ArrayList<>();
 
         try {
-            Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM Person";
-            ResultSet resultSet = statement.executeQuery(SQL);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Person");
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
                 Person person = new Person();
@@ -62,8 +61,20 @@ public class PersonDAO {
     }
 
     public void save(Person person){
-//        person.setId(++PEOPLE_COUNT);
-//        people.add(person);
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("INSERT INTO Person VALUES(4, ?, ?, ?)");
+
+            preparedStatement.setString(1, person.getName());
+            preparedStatement.setInt(2, person.getAge());
+            preparedStatement.setString(3, person.getEmail());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     public void update(int id, Person updatedPerson){
