@@ -35,7 +35,7 @@ public class PersonDAO {
 
     public void save(Person person){
         // Используем метод "update" тк запрос ничего не вернёт.
-        jdbcTemplate.update("INSERT INTO Person VALUES(6, ?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO Person VALUES(DEFAULT, ?, ?, ?)",
                 person.getName(), person.getAge(), person.getEmail());
     }
 
