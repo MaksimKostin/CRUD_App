@@ -3,13 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>People</title>
+
+    <style>
+        .table_blur {
+            background: #f5ffff;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .table_blur th {
+            border-top: 1px solid #777777;
+            border-bottom: 1px solid #777777;
+            box-shadow: inset 0 1px 0 #999999, inset 0 -1px 0 #999999;
+            background: linear-gradient(#9595b6, #5a567f);
+            color: white;
+            padding: 10px 15px;
+            position: relative;
+        }
+        .table_blur th:after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 25%;
+            height: 25%;
+            width: 100%;
+            background: linear-gradient(rgba(255, 255, 255, 0), rgba(255,255,255,.08));
+        }
+        .table_blur tr:nth-child(odd) {
+            background: #ebf3f9;
+        }
+        .table_blur th:first-child {
+            border-left: 1px solid #777777;
+            border-bottom:  1px solid #777777;
+            box-shadow: inset 1px 1px 0 #999999, inset 0 -1px 0 #999999;
+        }
+        .table_blur th:last-child {
+            border-right: 1px solid #777777;
+            border-bottom:  1px solid #777777;
+            box-shadow: inset -1px 1px 0 #999999, inset 0 -1px 0 #999999;
+        }
+        .table_blur td {
+            border: 1px solid #e3eef7;
+            padding: 10px 15px;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        .table_blur tbody:hover td {
+            color: transparent;
+            text-shadow: 0 0 3px #a09f9d;
+        }
+        .table_blur tbody:hover tr:hover td {
+            color: #444444;
+            text-shadow: none;
+        }
+    </style>
 </head>
 <body>
-<div th:each="person: ${people}">
-    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getSurname() + ' ' + person.getName()}">VALUE</a>
-</div>
+
+<table class="table_blur">
+    <tr>
+        <th>Id</th>
+        <th>Surname</th>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="person : ${people}">
+        <td><a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getId}">Info</a></td>
+        <td th:text="${person.getSurname}"></td>
+        <td th:text="${person.getName}"></td>
+        <td th:text="${person.getLastname}"></td>
+        <td th:text="${person.getAge}"></td>
+        <td th:text="${person.getEmail}"></td>
+        <td><form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
+            <input type="submit" value="Edit"/>
+            </form>
+        </td>
+        <td><form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+            <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
 <br/>
 <hr/>
-<a href="/people/new">Create new person</a>
+
+<form th:method="GET" th:action="@{/people/new}">
+    <input type="submit" value="Create new person"/>
+</form>
+
 </body>
 </html>
