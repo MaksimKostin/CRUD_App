@@ -6,9 +6,17 @@
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
+    <label for="forSurname">Enter surname</label>
+    <input type="text" th:field="*{surname}" id="forSurname"/>
+    <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname error</div>
+    <br/>
     <label for="forName">Enter name</label>
     <input type="text" th:field="*{name}" id="forName"/>
     <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    <br/>
+    <label for="forLastname">Enter lastname</label>
+    <input type="text" th:field="*{lastname}" id="forLastname"/>
+    <div style="color: red" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Last name error</div>
     <br/>
     <label for="forAge">Enter age</label>
     <input type="text" th:field="*{age}" id="forAge">
