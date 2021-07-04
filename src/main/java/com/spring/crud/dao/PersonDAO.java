@@ -35,13 +35,16 @@ public class PersonDAO {
 
     public void save(Person person){
         // Используем метод "update" тк запрос ничего не вернёт.
-        jdbcTemplate.update("INSERT INTO Person VALUES(DEFAULT, ?, ?, ?)",
-                person.getName(), person.getAge(), person.getEmail());
+        jdbcTemplate.update("INSERT INTO Person VALUES(DEFAULT, ?, ?, ?, ?, ?)",
+                person.getName(),person.getSurname(),
+                person.getLastname(), person.getAge(), person.getEmail());
     }
 
     public void update(int id, Person updatedPerson){
-        jdbcTemplate.update("UPDATE Person SET name=?, age=?, email=? WHERE id=?",
-                updatedPerson.getName(), updatedPerson.getAge(), updatedPerson.getEmail(), id);
+        jdbcTemplate.update("UPDATE Person SET name=?, surname=?, lastname=?, age=?, email=? WHERE id=?",
+                updatedPerson.getName(), updatedPerson.getSurname(),
+                updatedPerson.getLastname(), updatedPerson.getAge(),
+                updatedPerson.getEmail(), id);
 
     }
 
