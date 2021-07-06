@@ -1,11 +1,17 @@
 package com.spring.crud.models;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "Person")
 public class Person {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(message = "Surname should not be empty")
@@ -32,6 +38,8 @@ public class Person {
     public Person(int id, String name, String surname, String lastname,int age, String email) {
         this.id = id;
         this.name = name;
+        this.surname = surname;
+        this.lastname = lastname;
         this.age = age;
         this.email = email;
     }
@@ -82,5 +90,17 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", name='" + lastname + '\'' +
+                ", name='" + age + '\'' +
+                ", name='" + email + '\'' +
+                '}';
     }
 }
