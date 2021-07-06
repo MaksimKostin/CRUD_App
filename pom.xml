@@ -19,6 +19,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
 
     <spring.version>5.3.7</spring.version>
+    <hibernate.version>5.4.28.Final</hibernate.version>
   </properties>
 
   <dependencies>
@@ -81,6 +82,22 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.2.22</version>
+    </dependency>
+
+    <!--ORM Related dependencies -->
+
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+      <version>${spring.version}</version>
     </dependency>
 
   </dependencies>
