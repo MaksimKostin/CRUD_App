@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "Person")
 public class Person {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -96,11 +97,11 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", name='" + surname + '\'' +
+                ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
-                ", name='" + lastname + '\'' +
-                ", name='" + age + '\'' +
-                ", name='" + email + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", age='" + age + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
